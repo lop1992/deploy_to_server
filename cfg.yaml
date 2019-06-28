@@ -1,0 +1,30 @@
+# -
+    # ip : 192.168.0.124
+    # port : 22
+    # username: root
+    # passwd : zaq123zmt
+    # deployPath : /root/jboss/deplore
+    #rsaFile : E:/aaa.rsa
+-
+    ip : 192.168.0.132
+    port : 22
+    username: root
+    # 使用rsa密钥文件
+    #rsaFile : E:/aaa.rsa
+    passwd : zmt123pay
+    # 服务器部署地址
+    deployPath : /usr/local/jboss-5.1.0.GA/server/default/deploy
+    # 部署之后的执行命令
+    deployAfter :
+        # 直接按顺序运行命令  
+        cmds : 
+                # 停止服务器
+            - "sh /usr/local/jboss-5.1.0.GA/bin/shutdown.sh -S" 
+                # 启动服务器
+            - "nohup sh /usr/local/jboss-5.1.0.GA/bin/run.sh > nohup1.out 2>&1 &"
+        cmdsWaiteTime: 25
+        logs :
+            # 查看日志
+            cmd : "tail -fn 100 ~/nohup1.out"
+            # 查看日志时间
+            showTimes : 35 
